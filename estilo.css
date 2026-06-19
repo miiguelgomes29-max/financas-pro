@@ -1,0 +1,111 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+
+:root {
+    --primary: #4361ee;
+    --primary-hover: #3a0ca3;
+    --dark: #2b2d42;
+    --light: #f8f9fa;
+    --bg-color: #f4f7f6;
+    --text-main: #333333;
+    --text-muted: #8d99ae;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+body { background-color: var(--bg-color); color: var(--text-main); min-height: 100vh; }
+
+/* ================= LOGIN E REGISTO ================= */
+.bg-login {
+    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+    display: flex; align-items: center; justify-content: center; height: 100vh;
+}
+.login-container {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 40px; border-radius: 20px;
+    width: 100%; max-width: 400px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+    text-align: center;
+}
+.login-header h1 { color: var(--dark); margin: 15px 0 5px 0; font-size: 24px; }
+.login-header p { color: var(--text-muted); margin-bottom: 30px; font-size: 14px; }
+
+.input-group { position: relative; margin-bottom: 20px; }
+.input-icon { position: absolute; left: 15px; top: 50%; transform: translateY(-50%); color: var(--text-muted); }
+.input-group input {
+    width: 100%; padding: 15px 15px 15px 45px;
+    border: 1px solid #ddd; border-radius: 10px;
+    font-size: 14px; transition: 0.3s;
+}
+.input-group input:focus { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.15); outline: none; }
+
+.btn-primary {
+    width: 100%; padding: 15px; border: none; border-radius: 10px;
+    background: var(--primary); color: white; font-weight: bold; font-size: 16px;
+    cursor: pointer; transition: 0.3s; display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+}
+.btn-primary:hover { background: var(--primary-hover); transform: translateY(-2px); }
+
+.login-footer { margin-top: 25px; font-size: 14px; }
+.login-footer a { color: var(--primary); text-decoration: none; font-weight: bold; }
+
+/* ================= ALERTAS ================= */
+.alert { padding: 15px; border-radius: 10px; margin-bottom: 20px; font-size: 14px; text-align: left;}
+.alert-danger { background: #fee2e2; color: #991b1b; border: 1px solid #f87171; }
+.alert-success { background: #dcfce7; color: #166534; border: 1px solid #4ade80; }
+
+/* ================= NAVEGAÇÃO ================= */
+.navbar {
+    background: var(--dark); padding: 15px 30px;
+    display: flex; align-items: center; justify-content: space-between;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+.nav-brand { color: white; font-size: 20px; font-weight: bold; }
+.nav-links { display: flex; gap: 20px; }
+.nav-links a { color: #ccc; text-decoration: none; font-weight: 600; padding: 8px 12px; border-radius: 6px; transition: 0.3s; }
+.nav-links a:hover { color: white; background: rgba(255,255,255,0.1); }
+.nav-user { display: flex; align-items: center; gap: 20px; color: white; font-size: 14px; }
+.btn-logout { background: #ef476f; color: white; text-decoration: none; padding: 8px 15px; border-radius: 6px; font-weight: bold; transition: 0.3s;}
+.btn-logout:hover { background: #d90429; }
+
+/* ================= CONTEÚDO PRINCIPAL (DASHBOARD) ================= */
+.container { max-width: 1200px; margin: 40px auto; padding: 0 20px; }
+h1, h2 { color: var(--dark); margin-bottom: 25px; }
+
+/* Dashboard Cards */
+.cartoes { display: flex; gap: 25px; margin-bottom: 40px; flex-wrap: wrap; }
+.cartao { 
+    flex: 1; min-width: 250px; padding: 30px; border-radius: 15px; 
+    color: white; box-shadow: 0 10px 20px rgba(0,0,0,0.08); 
+    transition: transform 0.3s; position: relative; overflow: hidden;
+}
+.cartao:hover { transform: translateY(-5px); }
+.cartao h3 { font-size: 16px; font-weight: 400; opacity: 0.9; margin-bottom: 10px; }
+.cartao p { font-size: 32px; font-weight: 700; }
+
+.verde { background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%); }
+.vermelho { background: linear-gradient(135deg, #ff416c 0%, #ff4b2b 100%); }
+.azul { background: linear-gradient(135deg, #4361ee 0%, #3a0ca3 100%); }
+
+/* ================= TABELAS MODERNAS ================= */
+table { 
+    width: 100%; border-collapse: collapse; background: white; 
+    border-radius: 12px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.05); 
+    margin-bottom: 30px;
+}
+th { background: var(--dark); color: white; padding: 15px 20px; text-align: left; font-weight: 600; }
+td { padding: 15px 20px; border-bottom: 1px solid #f1f1f1; color: #555; }
+tr:hover { background: #f8f9fa; }
+
+/* ================= FORMULÁRIOS ================= */
+form:not(.login-container form) {
+    background: white; padding: 25px; border-radius: 12px; 
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05); margin-bottom: 30px;
+    display: flex; gap: 15px; flex-wrap: wrap; align-items: center;
+}
+form:not(.login-container form) input, 
+form:not(.login-container form) select {
+    padding: 12px 15px; border: 1px solid #ddd; border-radius: 8px; flex: 1; min-width: 150px;
+}
+form:not(.login-container form) button {
+    padding: 12px 25px; background: var(--primary); color: white; 
+    border: none; border-radius: 8px; cursor: pointer; font-weight: bold;
+}
