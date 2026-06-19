@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finanças Pro - O Teu Banco Pessoal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* ==========================================
+           🎨 ESTILOS GERAIS - TEMA BANCÁRIO / FINTECH
+           ========================================== */
+        :root {
+            --primary: #4f46e5;
+            --primary-hover: #4338ca;
+            --bg-dark: #020617;
+            --bg-card: #0f172a;
+            --text-main: #ffffff;
+            --text-muted: #94a3b8;
+            --border-color: #1e293b;
+            --success: #10b981;
+        }
+
+        body, html {
+            margin: 0; padding: 0;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        a { text-decoration: none; transition: 0.3s; }
+        img { max-width: 100%; border-radius: 20px; }
+
+        /* NAVEGAÇÃO */
+        .navbar {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 20px 5%; background: rgba(2, 6, 23, 0.85);
+            backdrop-filter: blur(12px); position: fixed; width: 100%; box-sizing: border-box;
+            top: 0; z-index: 1000; border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        .logo { font-size: 24px; font-weight: 800; display: flex; align-items: center; gap: 10px; color: white; }
+        .nav-links { display: flex; gap: 24px; align-items: center; }
+        .nav-item { color: var(--text-muted); font-weight: 600; font-size: 15px; }
+        .nav-item:hover { color: white; }
+        
+        .btn-login { color: white; font-weight: 700; padding: 10px 20px; }
+        .btn-login:hover { color: var(--primary); }
+        .btn-solid { background: var(--primary); color: white; padding: 12px 28px; border-radius: 10px; font-weight: 700; box-shadow: 0 4px 20px rgba(79, 70, 229, 0.3); }
+        .btn-solid:hover { background: var(--primary-hover); transform: translateY(-2px); box-shadow: 0 6px 25px rgba(79, 70, 229, 0.5); }
+
+        /* HERO SECTION COM IMAGEM DIVIDIDA */
+        .hero {
+            padding: 160px 5% 100px 5%;
+            display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;
+            background: radial-gradient(circle at top left, #1e1b4b 0%, var(--bg-dark) 50%);
+            min-height: 80vh; box-sizing: border-box;
+        }
+        .hero-text h1 { font-size: 64px; font-weight: 800; line-height: 1.1; margin-bottom: 24px; }
+        .hero-text h1 span { background: linear-gradient(to right, #818cf8, #4f46e5); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .hero-text p { font-size: 18px; color: var(--text-muted); margin-bottom: 40px; line-height: 1.7; max-width: 90%; }
+        .hero-image-container { position: relative; }
+        .hero-image-container img { box-shadow: 0 25px 50px -12px rgba(0,0,0,0.7); border: 1px solid var(--border-color); }
+        .badge-trust { display: inline-flex; align-items: center; gap: 10px; background: rgba(16, 185, 129, 0.1); color: var(--success); padding: 8px 16px; border-radius: 30px; font-weight: 700; font-size: 14px; margin-bottom: 30px; }
+
+        /* LOGOS DE CONFIANÇA (Estilo Banco) */
+        .trust-section { padding: 40px 5%; border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color); background: var(--bg-card); text-align: center; }
+        .trust-section p { color: var(--text-muted); font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 20px; }
+        .logos-grid { display: flex; justify-content: center; gap: 40px; flex-wrap: wrap; opacity: 0.5; filter: grayscale(100%); }
+        .logos-grid i { font-size: 32px; color: white; }
+
+        /* SECÇÃO DE DETALHES (TEXTO + IMAGEM) */
+        .split-section { padding: 120px 5%; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+        .split-section.reverse { grid-template-columns: 1fr 1fr; direction: rtl; }
+        .split-section.reverse > * { direction: ltr; }
+        .split-content h2 { font-size: 42px; font-weight: 800; margin-bottom: 20px; line-height: 1.2; }
+        .split-content p { font-size: 18px; color: var(--text-muted); line-height: 1.7; margin-bottom: 30px; }
+        .feature-list { list-style: none; padding: 0; }
+        .feature-list li { display: flex; align-items: center; gap: 15px; margin-bottom: 15px; font-size: 16px; font-weight: 600; }
+        .feature-list i { color: var(--primary); background: rgba(79, 70, 229, 0.2); padding: 8px; border-radius: 50%; font-size: 14px; }
+
+        /* SEGURANÇA BANCÁRIA */
+        .security-section { text-align: center; padding: 100px 5%; background: linear-gradient(180deg, var(--bg-dark) 0%, #0f172a 100%); }
+        .security-icon { font-size: 60px; color: var(--success); margin-bottom: 20px; }
+        .security-section h2 { font-size: 38px; font-weight: 800; margin-bottom: 20px; }
+        .security-section p { max-width: 600px; margin: 0 auto; color: var(--text-muted); font-size: 18px; line-height: 1.6; }
+
+        /* TESTEMUNHOS */
+        .testimonials { padding: 100px 5%; background: var(--bg-dark); }
+        .test-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 50px; }
+        .test-card { background: var(--bg-card); padding: 40px; border-radius: 20px; border: 1px solid var(--border-color); }
+        .stars { color: #fbbf24; margin-bottom: 20px; font-size: 18px; }
+        .test-card p { font-size: 16px; font-style: italic; color: #cbd5e1; margin-bottom: 30px; line-height: 1.6; }
+        .user-info { display: flex; align-items: center; gap: 15px; }
+        .user-info img { width: 50px; height: 50px; border-radius: 50%; object-fit: cover; }
+        .user-info h4 { margin: 0; font-size: 16px; }
+        .user-info span { color: var(--text-muted); font-size: 13px; }
+
+        /* CTA FINAL */
+        .cta-box { background: linear-gradient(135deg, var(--primary) 0%, #312e81 100%); border-radius: 30px; padding: 80px 40px; text-align: center; margin: 100px 5%; position: relative; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.5); }
+        .cta-box h2 { font-size: 48px; font-weight: 800; margin-bottom: 20px; position: relative; z-index: 2; }
+        .cta-box p { font-size: 20px; color: #e0e7ff; margin-bottom: 40px; position: relative; z-index: 2; }
+        .cta-box .btn-solid { background: white; color: var(--primary); font-size: 18px; padding: 18px 40px; }
+        .cta-box .btn-solid:hover { background: #f8fafc; }
+
+        /* FOOTER PROFISSIONAL */
+        footer { padding: 80px 5% 40px 5%; background: var(--bg-card); border-top: 1px solid var(--border-color); }
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 50px; margin-bottom: 60px; }
+        .footer-col h3 { font-size: 18px; color: white; margin-bottom: 25px; font-weight: 700; }
+        .footer-col ul { list-style: none; padding: 0; margin: 0; }
+        .footer-col ul li { margin-bottom: 15px; }
+        .footer-col ul li a { color: var(--text-muted); font-size: 15px; }
+        .footer-col ul li a:hover { color: var(--primary); }
+        .footer-bottom { text-align: center; padding-top: 30px; border-top: 1px solid var(--border-color); color: var(--text-muted); font-size: 14px; }
+
+        @media (max-width: 992px) {
+            .hero, .split-section, .split-section.reverse { grid-template-columns: 1fr; text-align: center; padding-top: 120px; }
+            .hero-text h1 { font-size: 48px; }
+            .feature-list li { justify-content: center; }
+            .nav-item { display: none; }
+            .footer-grid { grid-template-columns: 1fr 1fr; }
+        }
+        @media (max-width: 600px) {
+            .footer-grid { grid-template-columns: 1fr; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="logo">
+            <i class="fa-solid fa-wallet" style="color: var(--primary);"></i> Finanças Pro
+        </div>
+        <div class="nav-links">
+            <a href="#funcionalidades" class="nav-item">Funcionalidades</a>
+            <a href="#seguranca" class="nav-item">Segurança</a>
+            <a href="index.php?p=login" class="btn-login">Entrar</a>
+            <a href="index.php?p=registar" class="btn-solid">Abrir Conta</a>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="hero-text">
+            <div class="badge-trust"><i class="fa-solid fa-shield-check"></i> Regulado & Seguro</div>
+            <h1>A nova era do teu <span>dinheiro.</span></h1>
+            <p>O Finanças Pro é mais do que um gestor. É a tua central de inteligência financeira. Acompanha os teus gastos, corta nas despesas invisíveis e vê o teu património crescer em tempo real.</p>
+            <div style="display: flex; gap: 15px; flex-wrap: wrap;">
+                <a href="index.php?p=registar" class="btn-solid" style="padding: 16px 32px; font-size: 18px;">Começar Gratuitamente</a>
+            </div>
+        </div>
+        <div class="hero-image-container">
+            <img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?q=80&w=1000&auto=format&fit=crop" alt="Dashboard App Financeiro">
+        </div>
+    </header>
+
+    <section class="trust-section">
+        <p>A tecnologia financeira do futuro, hoje.</p>
+        <div class="logos-grid">
+            <i class="fa-brands fa-cc-visa"></i>
+            <i class="fa-brands fa-cc-mastercard"></i>
+            <i class="fa-brands fa-apple-pay"></i>
+            <i class="fa-brands fa-google-pay"></i>
+            <i class="fa-solid fa-building-columns"></i>
+        </div>
+    </section>
+
+    <section id="funcionalidades" class="split-section">
+        <div class="split-content">
+            <h2>Estatísticas que mudam o jogo.</h2>
+            <p>Deixa as folhas de cálculo no passado. O nosso motor gráfico analisa todos os teus movimentos e entrega-te relatórios visuais fáceis de entender. Sabe sempre para onde vai cada cêntimo.</p>
+            <ul class="feature-list">
+                <li><i class="fa-solid fa-chart-pie"></i> Gráficos de categorias automáticos</li>
+                <li><i class="fa-solid fa-bolt"></i> Balanço atualizado ao milissegundo</li>
+                <li><i class="fa-solid fa-magnifying-glass-dollar"></i> Histórico completo e pesquisável</li>
+            </ul>
+        </div>
+        <div class="split-image">
+            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1000&auto=format&fit=crop" alt="Gráficos de Dados">
+        </div>
+    </section>
+
+    <section class="split-section reverse">
+        <div class="split-content">
+            <h2>Design desenhado para o dia-a-dia.</h2>
+            <p>O tempo é dinheiro. Por isso, desenhámos a interface mais rápida do mercado. Registar um café ou um salário demora exatamente o mesmo: menos de 5 segundos.</p>
+            <ul class="feature-list">
+                <li><i class="fa-solid fa-moon"></i> Modo noturno nativo (Midnight Mode)</li>
+                <li><i class="fa-solid fa-mobile-screen"></i> 100% responsivo em qualquer telemóvel</li>
+                <li><i class="fa-solid fa-wand-magic-sparkles"></i> Interface limpa e sem distrações</li>
+            </ul>
+        </div>
+        <div class="split-image">
+            <img src="https://images.unsplash.com/photo-1616455584551-73602d20ffbd?q=80&w=1000&auto=format&fit=crop" alt="Interface Financeira Mobile">
+        </div>
+    </section>
+
+    <section id="seguranca" class="security-section">
+        <i class="fa-solid fa-lock security-icon"></i>
+        <h2>Privacidade nível cofre.</h2>
+        <p>A tua informação financeira é estritamente confidencial. Utilizamos encriptação de ponta a ponta e algoritmos de *hashing* avançados para garantir que só tu tens acesso aos teus dados.</p>
+    </section>
+
+    <section class="testimonials">
+        <h2 style="text-align: center; font-size: 38px; font-weight: 800; margin-bottom: 20px;">O que dizem os nossos utilizadores</h2>
+        <div class="test-grid">
+            <div class="test-card">
+                <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                <p>"Substituí a minha folha de Excel gigante por este site. A forma como os gráficos me mostram onde estou a gastar demais ajudou-me a poupar 200€ logo no primeiro mês."</p>
+                <div class="user-info">
+                    <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="User">
+                    <div><h4>Miguel Santos</h4><span>Designer Freelancer</span></div>
+                </div>
+            </div>
+            <div class="test-card">
+                <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                <p>"O design escuro é incrível e a navegação é super intuitiva. Sinto que tenho o meu próprio banco digital privado onde registo a minha mesada e despesas diárias."</p>
+                <div class="user-info">
+                    <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="User">
+                    <div><h4>Ana Costa</h4><span>Estudante Universitária</span></div>
+                </div>
+            </div>
+            <div class="test-card">
+                <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i></div>
+                <p>"A rapidez com que adiciono uma despesa é fenomenal. Faço login no telemóvel, insiro o valor do almoço e o saldo atualiza imediatamente. Muito profissional."</p>
+                <div class="user-info">
+                    <img src="https://randomuser.me/api/portraits/men/86.jpg" alt="User">
+                    <div><h4>Ricardo Almeida</h4><span>Engenheiro Informático</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="cta-box">
+        <h2>Pronto para assumir o controlo?</h2>
+        <p>Junta-te a nós e muda a tua vida financeira hoje mesmo. O registo demora 30 segundos.</p>
+        <a href="index.php?p=registar" class="btn-solid">Criar a Minha Conta</a>
+    </div>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <div class="logo" style="margin-bottom: 20px;">
+                    <i class="fa-solid fa-wallet" style="color: var(--primary);"></i> Finanças Pro
+                </div>
+                <p style="color: var(--text-muted); font-size: 14px; line-height: 1.6;">A plataforma de gestão financeira que coloca o teu dinheiro a trabalhar para ti. Simples, seguro e desenhado para o futuro.</p>
+            </div>
+            <div class="footer-col">
+                <h3>Produto</h3>
+                <ul>
+                    <li><a href="#funcionalidades">Funcionalidades</a></li>
+                    <li><a href="#seguranca">Segurança de Dados</a></li>
+                    <li><a href="#">Atualizações</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Empresa</h3>
+                <ul>
+                    <li><a href="#">Sobre Nós</a></li>
+                    <li><a href="#">Carreiras</a></li>
+                    <li><a href="#">Contactos</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Legal</h3>
+                <ul>
+                    <li><a href="#">Termos de Serviço</a></li>
+                    <li><a href="#">Política de Privacidade</a></li>
+                    <li><a href="#">Cookies</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; <?= date('Y') ?> Finanças Pro Portugal. Todos os direitos reservados. Apresentação Escolar / Académica.
+        </div>
+    </footer>
+
+</body>
+</html>
